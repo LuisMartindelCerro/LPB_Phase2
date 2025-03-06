@@ -1,15 +1,7 @@
 # Import Libraries
+
 import re
 import difflib
-
-# Load the file and some initial analyses from the input file
-
-input_file = open("input.txt").readlines()
-
-if len(input_file) == 1:
-    print("Warning: your file only has 1 sequence. Analysis will be done for only this sequence")
-elif len(input_file) > 2:
-    print("Warning: your file has", len(input_file), "sequences. Analysis will continue with all sequences")
 
 # Create functionalized workflow
 
@@ -31,12 +23,13 @@ def longest_common_substring(seq1, seq2):
     return longest_substr
 
 def analyze_aptamers(file_path):
+    
     # Read input file
     with open(file_path, 'r') as file:
         data = file.read()
 
     # Use regular expressions to find sequences and IDs
-    matches = re.findall(r'(seq\d)\s([ACGT]+)', data)
+    matches = re.findall(r'([A-Za-z0-9_]+)\s([ACGT]+)', data)
 
     num_sequences = len(matches)
 
@@ -52,8 +45,11 @@ def analyze_aptamers(file_path):
     for i in range(num_sequences):
         seq_id, seq = matches[i]
         seq_length = len(seq)
-        seq_gc_content = calculate_gc_content(seq)
         output += f"{seq_id} length: {seq_length}\n"
+
+    for i in range(num_sequences):
+        seq_id, seq = matches[i]
+        seq_gc_content = calculate_gc_content(seq)
         output += f"{seq_id} GC content: {seq_gc_content:.1f}%\n"
 
     # If there are exactly 2 sequences, compute the longest common substring
@@ -66,11 +62,10 @@ def analyze_aptamers(file_path):
     # Write output to a file
     with open('output.txt', 'w') as output_file:
         output_file.write(output)
+    
+    print("Analysis completed!")
 
     print(output)  # Print to the console as well for immediate feedback
 
 # Example usage:
 analyze_aptamers("input.txt")
-
-
-    
