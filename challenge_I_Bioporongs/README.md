@@ -1,4 +1,4 @@
 Bioporongs
 
-pip install numpy
+python3 -m pip install -r requirements.txt
 python3 script_I.py

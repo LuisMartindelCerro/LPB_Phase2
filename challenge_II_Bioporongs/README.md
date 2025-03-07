@@ -1,4 +1,4 @@
 Bioporongs
 
-pip install numpy
-python3 code2.py "Homo sapiens" output_genes.txt
+python3 -m pip install -r requirements.txt
+python3 script_II.py "Homo sapiens" output_genes.txt
