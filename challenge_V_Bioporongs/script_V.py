@@ -1,5 +1,4 @@
 # Import Libraries
-
 import re
 import difflib
 import sys
@@ -21,7 +20,7 @@ def longest_common_substring(seq1, seq2):
     longest_substr = seq1[match.a: match.a + match.size]
     return longest_substr
 
-def analyze_aptamers(file_path):
+def analyze_aptamers(file):
     
     if len(sys.argv) != 2:
         print("Error: Exactly one argument expected ('input_file'). Provided arguments: {}".format(len(sys.argv) - 1))
@@ -42,8 +41,10 @@ def analyze_aptamers(file_path):
 
     if num_sequences == 1:
         print("Warning: your file only has 1 sequence. Only Length Analysis and GC Content analysis will be computed.")
+        print("Please, provide only two sequences as input to identify the longest common substring.")
     elif num_sequences > 2:
         print("Warning: your file has", num_sequences, "sequences.  Only Length Analysis and GC Content analysis will be computed.")
+        print("Please, provide only two sequences as input to identify the longest common substring.")
     
     # Initialize output
     output = ""

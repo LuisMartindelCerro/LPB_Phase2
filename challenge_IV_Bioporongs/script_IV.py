@@ -6,13 +6,21 @@ import sys
 
 # Check if there is a valid FASTA file as input
 
-###
+if len(sys.argv) != 2:
+        print("Error: Exactly one argument expected ('input_file.fasta'). Provided arguments: {}".format(len(sys.argv) - 1))
+        print("Usage: python3 script_v.py <Input_file.fasta>")
+        sys.exit(1)
+
+# Read the fasta file
+fasta_file = sys.argv[1]
+
+# Create empty variable
 
 pathogenic_seqs = []
 non_pathogenic_seqs = []
 
 # Read Fasta file
-for record in SeqIO.parse("input.fasta", "fasta"):
+for record in SeqIO.parse(fasta_file, "fasta"):
     if record.id.startswith("pathogenic"):
         pathogenic_seqs.append(str(record.seq))
     elif record.id.startswith("non_pathogenic"):
@@ -56,6 +64,8 @@ for pos, (pathogenic, non_pathogenic) in mutation_positions.items():
      non_pathogenic.intersection_update(valid_amino_acids)
 
 # Print results
-for pos, (pathogenic, non_pathogenic) in mutation_positions.items():
-    if pathogenic != non_pathogenic:
-        print(f"Position {pos}: Pathogenic -> {pathogenic}, Non-Pathogenic -> {non_pathogenic}")
+with open('output.txt', 'w') as output_file:
+    for pos, (pathogenic, non_pathogenic) in mutation_positions.items():
+        if pathogenic != non_pathogenic:
+            output = f"Position {pos}: Pathogenic -> {pathogenic}, Non-Pathogenic -> {non_pathogenic}\n"
+            output_file.write(output)  # Write to file

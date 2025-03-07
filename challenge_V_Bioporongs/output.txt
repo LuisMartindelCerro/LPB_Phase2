@@ -1,0 +1,6 @@
+seq1 length: 20
+seq2 length: 19
+seq2 length: 19
+seq1 GC content: 50.0%
+seq2 GC content: 52.6%
+seq2 GC content: 52.6%
