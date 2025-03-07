@@ -10,8 +10,7 @@ def fetch_gene_names(organism):
     params = {
         "db": "gene",  # Search the gene database
         "term": organism,  # Organism name provided as input
-        "retmode": "xml",  # Get results in XML format
-        "retmax": "1000"  # Max number of results to fetch, adjust as needed
+        "retmode": "xml"  # Get results in XML format
     }
     
     # Send request to NCBI Entrez API
