@@ -2,8 +2,7 @@
 
 import re
 import difflib
-
-# Create functionalized workflow
+import sys
 
 def calculate_gc_content(sequence):
     # Calculate GC content as percentage
@@ -24,8 +23,16 @@ def longest_common_substring(seq1, seq2):
 
 def analyze_aptamers(file_path):
     
+    if len(sys.argv) != 2:
+        print("Error: Exactly one argument expected ('input_file'). Provided arguments: {}".format(len(sys.argv) - 1))
+        print("Usage: python3 script_v.py <Input_file>")
+        sys.exit(1)
+
+    # Get the organism name and output file path from the command line arguments
+    file = sys.argv[1]
+
     # Read input file
-    with open(file_path, 'r') as file:
+    with open(file, 'r') as file:
         data = file.read()
 
     # Use regular expressions to find sequences and IDs

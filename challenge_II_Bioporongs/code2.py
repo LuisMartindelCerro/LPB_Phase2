@@ -63,6 +63,7 @@ def write_genes_to_file(gene_names, output_file):
 def main():
     # Ensure we have the correct number of arguments
     if len(sys.argv) != 3:
+        print("Error: Exactly two arguments expected ('organism' & 'output_file'). Provided arguments: {}".format(len(sys.argv) - 1))
         print("Usage: python my_program.py <Organism Name> <Output File Path>")
         sys.exit(1)
 
